@@ -325,6 +325,8 @@ pub mod pallet {
 		NoDelegate,
 		/// No approval exists that would allow the transfer.
 		Unapproved,
+		/// The asset instance is locked.
+		Locked,
 	}
 
 	impl<T: Config<I>, I: 'static> Pallet<T, I> {
