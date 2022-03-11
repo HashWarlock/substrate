@@ -35,6 +35,7 @@ pub mod mock;
 mod tests;
 
 mod functions;
+mod impl_locker;
 mod impl_nonfungibles;
 mod types;
 
@@ -52,6 +53,7 @@ use sp_std::prelude::*;
 
 pub use pallet::*;
 pub use types::*;
+pub use impl_locker::Locker;
 pub use weights::WeightInfo;
 
 #[frame_support::pallet]
@@ -88,6 +90,9 @@ pub mod pallet {
 		/// The origin which may forcibly create or destroy an asset or otherwise alter privileged
 		/// attributes.
 		type ForceOrigin: EnsureOrigin<Self::Origin>;
+
+		/// Locker trait to enable Locking mechanism downstream
+		type Locker: Locker<Self::ClassId, Self::InstanceId>;
 
 		/// The basic amount of funds that must be reserved for an asset class.
 		#[pallet::constant]

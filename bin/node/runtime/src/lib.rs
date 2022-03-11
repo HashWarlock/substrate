@@ -1342,6 +1342,7 @@ impl pallet_uniques::Config for Runtime {
 	type InstanceId = u32;
 	type Currency = Balances;
 	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
+	type Locker = ();
 	type ClassDeposit = ClassDeposit;
 	type InstanceDeposit = InstanceDeposit;
 	type MetadataDepositBase = MetadataDepositBase;
