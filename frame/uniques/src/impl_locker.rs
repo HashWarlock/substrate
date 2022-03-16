@@ -15,7 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use frame_support::traits::misc::Locker;
+use frame_support::traits::Locker;
 
 impl<ClassId, InstanceId> Locker<ClassId, InstanceId> for () {
     /// Check if the asset should be locked and prevent interactions with the asset from executing.
