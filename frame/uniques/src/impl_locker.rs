@@ -1,6 +1,6 @@
 // This file is part of Substrate.
 
-// Copyright (C) 2017-2022 Parity Technologies (UK) Ltd.
+// Copyright (C) 2022 Parity Technologies (UK) Ltd.
 // SPDX-License-Identifier: Apache-2.0
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,18 +15,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use super::*;
-
-/// Trait to handle asset locking mechanism to ensure interactions with the asset can be implemented
-/// downstream to extend logic of Uniques current functionality
-#[allow(clippy::upper_case_acronyms)]
-pub trait Locker<ClassId, InstanceId> {
-    /// Check if the asset should be locked and prevent interactions with the asset from executing.
-    /// Default will be false if not implemented downstream
-    fn is_locked(class: ClassId, instance: InstanceId) -> bool;
-}
+use frame_support::traits::misc::Locker;
 
 impl<ClassId, InstanceId> Locker<ClassId, InstanceId> for () {
+    /// Check if the asset should be locked and prevent interactions with the asset from executing.
+    /// Default will be false if not implemented downstream
+    ///
+    /// Note: The logic check in this function must be constant time and consistent for benchmarks
+    /// to work
     fn is_locked(_class: ClassId, _instance: InstanceId) -> bool {
         false
     }

@@ -1007,6 +1007,13 @@ impl<Hash> PreimageRecipient<Hash> for () {
 	fn unnote_preimage(_: &Hash) {}
 }
 
+/// Trait to handle asset locking mechanism to ensure interactions with the asset can be implemented
+/// downstream to extend logic of Uniques current functionality
+pub trait Locker<ClassId, InstanceId> {
+	/// Check if the asset should be locked and prevent interactions with the asset from executing.
+	fn is_locked(class: ClassId, instance: InstanceId) -> bool;
+}
+
 #[cfg(test)]
 mod test {
 	use super::*;

@@ -43,7 +43,7 @@ pub mod migration;
 pub mod weights;
 
 use codec::{Decode, Encode, HasCompact};
-use frame_support::traits::{BalanceStatus::Reserved, Currency, ReservableCurrency};
+use frame_support::traits::{BalanceStatus::Reserved, Currency, ReservableCurrency, misc::Locker};
 use frame_system::Config as SystemConfig;
 use sp_runtime::{
 	traits::{Saturating, StaticLookup, Zero},
@@ -53,7 +53,6 @@ use sp_std::prelude::*;
 
 pub use pallet::*;
 pub use types::*;
-pub use impl_locker::Locker;
 pub use weights::WeightInfo;
 
 #[frame_support::pallet]
