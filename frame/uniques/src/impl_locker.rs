@@ -15,15 +15,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use frame_support::traits::Locker;
+use super::*;
+use frame_support::traits::tokens::*;
 
-impl<T: Config<I>, I: 'static> Locker<T::ClassId, T::InstanceId> for Pallet<T, I> {
+impl<ClassId, InstanceId> Locker<ClassId, InstanceId> for () {
     /// Check if the asset should be locked and prevent interactions with the asset from executing.
     /// Default will be false if not implemented downstream
     ///
     /// Note: The logic check in this function must be constant time and consistent for benchmarks
     /// to work
-    fn is_locked(_class: T::ClassId, _instance: T::InstanceId) -> bool {
+    fn is_locked(_class: ClassId, _instance: InstanceId) -> bool {
         false
     }
 }
