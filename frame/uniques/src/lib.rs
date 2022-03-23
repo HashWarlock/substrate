@@ -42,7 +42,9 @@ pub mod migration;
 pub mod weights;
 
 use codec::{Decode, Encode, HasCompact};
-use frame_support::traits::{BalanceStatus::Reserved, Currency, ReservableCurrency, Locker};
+use frame_support::traits::{
+	tokens::Locker, BalanceStatus::Reserved, Currency, ReservableCurrency,
+};
 use frame_system::Config as SystemConfig;
 use sp_runtime::{
 	traits::{Saturating, StaticLookup, Zero},
